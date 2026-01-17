@@ -36,16 +36,15 @@ jobs:
           node-version: 24
           registry-url: "https://npm.pkg.github.com"
 
+      - name: Set up GCC
+        uses: egor-tensin/setup-gcc@v2
+        with:
+          version: latest
+          platform: x64
+
       - name: NPM publish
         shell: bash
         run: |
-          apt update
-          apt install \
-            build-essential \
-            make \
-            cmake \
-            gcc \
-            g++
           npm ci || exit 1
           npm publish || exit 1
         env:
