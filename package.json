@@ -1,0 +1,45 @@
+{
+  "name": "@gasripper/libdiscid-ts",
+  "version": "0.0.1",
+  "description": "libdiscid for typescript",
+  "keywords": [
+    "libdiscid"
+  ],
+  "homepage": "https://github.com/gasripper/libdiscid-ts#readme",
+  "bugs": {
+    "url": "https://github.com/gasripper/libdiscid-ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gasripper/libdiscid-ts.git"
+  },
+  "license": "LGPL-2.0-only",
+  "author": "Edwin Per <pers.edwin@gmail.com>",
+  "type": "module",
+  "main": "dist/index.mjs",
+  "scripts": {
+    "autogypi": "autogypi",
+    "node-gyp": "node-gyp",
+    "emcc-path": "emcc-path",
+    "copyasm": "copyasm",
+    "ndts": "ndts",
+    "tsc": "tsc",
+    "build:native": "autogypi -r build && node-gyp -C build/native configure build && copyasm build/native dist",
+    "build:asmjs": "autogypi -r build && node-gyp -C build/asmjs  configure build --asmjs=1 && copyasm build/asmjs dist",
+    "install": "(npm run build:native || echo Warning: problems with native build)",
+    "prepublish": "tsc && (npm run build:asmjs || echo Warning: problems with asm.js build)"
+  },
+  "dependencies": {
+    "autogypi": "^0.2.2",
+    "nbind": "^0.3.15",
+    "node-gyp": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.9",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-prettier": "^5.5.5",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,5 @@
+{
+	"sources": [
+		"src/libdiscid.cc"
+	]
+}
