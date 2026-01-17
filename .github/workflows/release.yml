@@ -39,7 +39,14 @@ jobs:
       - name: NPM publish
         shell: bash
         run: |
-          npm ci
-          npm publish
+          apt update
+          apt install \
+            build-essential \
+            make \
+            cmake \
+            gcc \
+            g++
+          npm ci || exit 1
+          npm publish || exit 1
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
